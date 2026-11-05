@@ -1,0 +1,17 @@
+{
+  "name": "API Creator Studio",
+  "short_name": "API Studio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1018",
+  "theme_color": "#10111b",
+  "description": "Build, test and document APIs.",
+  "icons": [
+    {
+      "src": "/static/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

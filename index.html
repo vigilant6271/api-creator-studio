@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10111b"><meta name="description" content="Build, test and document APIs.">
+<link rel="manifest" href="/static/manifest.webmanifest"><link rel="stylesheet" href="/static/styles.css">
+<title>API Creator Studio</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">A</div><div><b>API Creator</b><small>STUDIO</small></div></div>
+    <div class="workspace-label">WORKSPACE</div>
+    <nav id="nav">
+      <button class="nav-item active" data-view="overview">◫ <span>Overview</span></button>
+      <button class="nav-item" data-view="builder">⌘ <span>API Builder</span></button>
+      <button class="nav-item" data-view="tester">⇄ <span>API Tester</span></button>
+      <button class="nav-item" data-view="models">▦ <span>Data Models</span></button>
+      <button class="nav-item" data-view="docs">▤ <span>Documentation</span></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="status-dot"></div><span>Local workspace</span><button id="installBtn" class="tiny-link">Install app</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">Workspace <span>/</span> <b id="pageTitle">Overview</b></div><div class="top-actions"><span class="live-pill"><i></i> Runtime online</span><button class="avatar">AC</button></div></header>
+    <section class="content">
+      <div id="overview" class="view">
+        <div class="hero-row"><div><div class="eyebrow">DEVELOPER WORKSPACE</div><h1>Build something<br><em>that connects.</em></h1><p>Design endpoints, run real requests, and ship clean API documentation.</p></div><button class="primary" id="newProject">＋ New project</button></div>
+        <div class="stats-grid"><div class="stat-card"><span>PROJECTS</span><b id="projectCount">—</b><small>Your API workspaces</small></div><div class="stat-card"><span>ENDPOINTS</span><b id="endpointCount">—</b><small>Across all projects</small></div><div class="stat-card"><span>REQUESTS</span><b id="requestCount">—</b><small>Saved test history</small></div></div>
+        <div class="section-heading"><div><div class="eyebrow">YOUR WORK</div><h2>Projects</h2></div><button class="ghost" id="refreshProjects">↻ Refresh</button></div>
+        <div id="projects" class="project-grid"></div>
+      </div>
+      <div id="builder" class="view hidden">
+        <div class="page-head"><div><div class="eyebrow">DESIGN YOUR INTERFACE</div><h1>API Builder</h1><p>Shape your routes and define exactly how they respond.</p></div><button class="primary" id="addEndpoint">＋ New endpoint</button></div>
+        <div class="workspace-grid"><div class="panel endpoint-panel"><div class="panel-head"><b>Endpoints</b><select id="projectSelect"></select></div><div id="endpointList" class="endpoint-list"></div></div><div class="panel editor-panel"><div class="panel-head"><b id="editorHeading">Endpoint details</b><span class="muted">VISUAL EDITOR</span></div><div id="endpointEditor" class="editor-body"><div class="empty-state">Select an endpoint or create a new one.</div></div></div></div>
+      </div>
+      <div id="tester" class="view hidden">
+        <div class="page-head"><div><div class="eyebrow">LIVE REQUEST WORKBENCH</div><h1>API Tester</h1><p>Send requests to your own running API definitions.</p></div></div>
+        <div class="panel request-panel"><div class="request-line"><select id="requestMethod"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select><input id="requestPath" value="/runtime/starter-api/users" aria-label="Request URL"><button class="primary" id="sendRequest">Send ↗</button></div><div class="request-meta"><label>Query parameters<input id="queryParams" placeholder="limit=10&active=true"></label><label>Headers<input id="requestHeaders" placeholder='{"Content-Type":"application/json"}'></label></div><label class="field-label">JSON request body<textarea id="requestBody" rows="5" placeholder='{"name":"New user","email":"user@example.com"}'></textarea></label></div>
+        <div class="panel response-panel"><div class="panel-head"><b>Response</b><div class="response-meta"><span id="responseStatus">Not sent</span><span id="responseTime">—</span></div></div><pre id="responseBody">Your response will appear here.</pre></div>
+        <div class="panel history-panel"><div class="panel-head"><b>Recent requests</b></div><div id="historyList" class="history-list"></div></div>
+      </div>
+      <div id="models" class="view hidden">
+        <div class="page-head"><div><div class="eyebrow">YOUR DATA LAYER</div><h1>Data Models</h1><p>Inspect and manage records used by CRUD endpoints.</p></div></div>
+        <div class="panel"><div class="panel-head"><b>Resources</b><select id="resourceProject"></select></div><div class="resource-tools"><input id="resourceName" value="users" placeholder="resource name"><button class="primary" id="loadRecords">Load records</button><button class="ghost" id="addRecord">＋ Add sample</button></div><pre id="recordsView">Choose a resource to inspect its records.</pre></div>
+      </div>
+      <div id="docs" class="view hidden">
+        <div class="page-head"><div><div class="eyebrow">SHARE YOUR CONTRACT</div><h1>Documentation</h1><p>OpenAPI 3.1 generated from your saved endpoint definitions.</p></div><button class="primary" id="downloadOpenApi">↓ Download JSON</button></div>
+        <div class="panel"><div class="panel-head"><b>OpenAPI specification</b><button class="ghost" id="copyOpenApi">Copy JSON</button></div><pre id="openApiView">Select a project to generate its specification.</pre></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="toast" class="toast"></div>
+<script src="/static/app.js"></script>
+<script>if('serviceWorker' in navigator) navigator.serviceWorker.register('/static/sw.js');</script>
+</body></html>
